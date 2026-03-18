@@ -1,5 +1,5 @@
 ---
-description: Project architecture and conventions for helium-rapid-websocket-mcp
+description: Project architecture and conventions for badger-websocket-mcp
 alwaysApply: true
 ---
 
@@ -7,7 +7,7 @@ alwaysApply: true
 
 ## Overview
 
-Single-file MCP server (`src/index.ts`) that bridges a Helium logging WebSocket to Cursor via the Model Context Protocol. Published as `helium-rapid-websocket-mcp` on npm.
+Single-file MCP server (`src/index.ts`) that bridges a Helium logging WebSocket to Cursor via the Model Context Protocol. Published as `badger-websocket-mcp` on npm.
 
 ## Architecture
 

@@ -283,7 +283,7 @@ function getWsUrl(): string {
 function createMcpServer(): McpServer {
   const mcp = new McpServer(
     {
-      name: "helium-rapid-websocket-mcp",
+      name: "badger-websocket-mcp",
       version: "1.0.5",
     },
     {

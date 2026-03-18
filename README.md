@@ -2,10 +2,12 @@
 
 MCP server that connects to the Helium logging WebSocket and exposes live log entries to [Cursor](https://cursor.com) (or any MCP client) for debugging. It supports two transports:
 
-**Install:** `npm install helium-rapid-websocket-mcp` or run with `npx helium-rapid-websocket-mcp`
+**Install:** `npm install badger-websocket-mcp` or run with `npx badger-websocket-mcp`
 
 - **stdio** (recommended for Cursor): Cursor spawns the server and passes config via `mcp.json` `env`. All credentials stay in mcp.json.
 - **SSE**: The server runs as an HTTP process and Cursor connects via URL. New messages are pushed via MCP resource subscriptions over SSE.
+
+**Repository:** [github.com/ajgreyling/badger-websocket-mcp](https://github.com/ajgreyling/badger-websocket-mcp)
 
 ## Architecture
 
@@ -38,19 +40,19 @@ sequenceDiagram
 No clone or build needed. Install and run directly:
 
 ```bash
-npm install helium-rapid-websocket-mcp
+npm install badger-websocket-mcp
 ```
 
 Or use npx (no install):
 
 ```bash
-npx helium-rapid-websocket-mcp
+npx badger-websocket-mcp
 ```
 
 For Cursor stdio mode, add to `mcp.json` and point at the package:
 
-- **npx:** `"command": "npx"`, `"args": ["-y", "helium-rapid-websocket-mcp"]`
-- **Installed:** `"command": "node"`, `"args": ["${workspaceFolder}/node_modules/helium-rapid-websocket-mcp/build/index.js"]`
+- **npx:** `"command": "npx"`, `"args": ["-y", "badger-websocket-mcp"]`
+- **Installed:** `"command": "node"`, `"args": ["${workspaceFolder}/node_modules/badger-websocket-mcp/build/index.js"]`
 
 See [Cursor configuration](#cursor-configuration) for full examples.
 
@@ -102,6 +104,13 @@ Connection lifecycle events (open, close, error) are also written. Non-JSON or m
 
 ## Setup
 
+From source, clone the repo and install:
+
+```bash
+git clone https://github.com/ajgreyling/badger-websocket-mcp.git
+cd badger-websocket-mcp
+```
+
 1. **Install dependencies**
 
    ```bash
@@ -148,7 +157,7 @@ Configure the WebSocket URL and credentials in `mcp.json` so Cursor spawns the s
   "mcpServers": {
     "helium-logs": {
       "command": "npx",
-      "args": ["-y", "helium-rapid-websocket-mcp"],
+      "args": ["-y", "badger-websocket-mcp"],
       "env": {
         "MCP_TRANSPORT": "stdio",
         "WS_URL": "wss://helium.mezzanineware.com/api/ws2/logging?appId=YOUR_APP_ID",
@@ -169,7 +178,7 @@ Configure the WebSocket URL and credentials in `mcp.json` so Cursor spawns the s
   "mcpServers": {
     "helium-logs": {
       "command": "node",
-      "args": ["${workspaceFolder}/node_modules/helium-rapid-websocket-mcp/build/index.js"],
+      "args": ["${workspaceFolder}/node_modules/badger-websocket-mcp/build/index.js"],
       "env": {
         "MCP_TRANSPORT": "stdio",
         "WS_URL": "wss://helium.mezzanineware.com/api/ws2/logging?appId=YOUR_APP_ID",
@@ -183,7 +192,7 @@ Configure the WebSocket URL and credentials in `mcp.json` so Cursor spawns the s
 }
 ```
 
-**Testing from source** (cloned repo, after `npm run build`):
+**Testing from source** ([cloned repo](https://github.com/ajgreyling/badger-websocket-mcp), after `npm run build`):
 
 ```json
 {
@@ -263,7 +272,7 @@ When Cursor spawns the MCP, the WebSocket connection can get 401 even though the
 
 1. Start the server from a terminal (credentials work there):
    ```bash
-   cd websocket-mcp
+   cd badger-websocket-mcp
    ./scripts/start-munic-chat-logs.sh   # for munic-chat (port 3000)
    # or
    ./scripts/start-sams-logs.sh          # for sams (port 3001)
