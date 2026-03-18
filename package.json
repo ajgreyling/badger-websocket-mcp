@@ -1,6 +1,6 @@
 {
   "name": "badger-websocket-mcp",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "MCP server that streams WebSocket logs to Cursor for debugging",
   "type": "module",
   "main": "build/index.js",
