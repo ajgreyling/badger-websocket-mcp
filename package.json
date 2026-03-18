@@ -1,11 +1,11 @@
 {
-  "name": "helium-rapid-websocket-mcp",
-  "version": "1.0.5",
-  "description": "MCP server that streams Helium WebSocket logs to Cursor for debugging",
+  "name": "websocket-mcp",
+  "version": "1.0.6",
+  "description": "MCP server that streams WebSocket logs to Cursor for debugging",
   "type": "module",
   "main": "build/index.js",
   "bin": {
-    "helium-rapid-websocket-mcp": "build/index.js"
+    "websocket-mcp": "build/index.js"
   },
   "files": [
     "build",
