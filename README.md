@@ -1,6 +1,6 @@
 # WebSocket MCP Server
 
-MCP server that connects to the Helium logging WebSocket and exposes live log entries to [Cursor](https://cursor.com) (or any MCP client) for debugging. It supports two transports:
+MCP server that connects to a WebSocket and exposes live log entries to [Cursor](https://cursor.com) (or any MCP client) for debugging. It supports two transports:
 
 **Install:** `npm install badger-websocket-mcp` or run with `npx badger-websocket-mcp`
 
@@ -15,7 +15,7 @@ MCP server that connects to the Helium logging WebSocket and exposes live log en
 sequenceDiagram
   participant Cursor
   participant MCP as MCP_Server
-  participant WS as Helium_WebSocket
+  participant WS as WebSocket
 
   Cursor->>MCP: resources/list
   MCP-->>Cursor: logs resource
@@ -33,7 +33,7 @@ sequenceDiagram
 
 - **Node.js** 18 or later
 - **Cursor** with MCP support (or another MCP client)
-- Credentials for the Helium logging WebSocket (username and password)
+- Credentials for the WebSocket (username and password)
 
 ## Using the NPM package
 
@@ -294,7 +294,7 @@ Override credentials with env: `WS_USER=... WS_PASSWORD=... ./scripts/start-muni
 wscat -c "wss://helium.mezzanineware.com/api/ws2/logging?appId=YOUR_APP_ID" --auth "USERNAME:PASSWORD"
 ```
 
-If wscat also gets 401, the credentials are wrong or not allowed for the logging API (e.g. different environment, password changed, or API access not granted). Confirm with your Helium/Mezzanine admin or the [Helium Logging Service](https://mezzaninewiki.atlassian.net/wiki/spaces/HTUT/pages/5741051/Helium+Logging+Service) docs.
+If wscat also gets 401, the credentials are wrong or not allowed for the logging API (e.g. different environment, password changed, or API access not granted). Confirm with your admin.
 
 ## Security
 

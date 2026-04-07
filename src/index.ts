@@ -178,6 +178,21 @@ function formatHeliumLogMessage(rawText: string): string {
   return rawText;
 }
 
+function truncateDebugLogFileOnStartup(): void {
+  if (process.env.OUTPUT_TO_CURSOR_DEBUG_LOG !== "true") return;
+  const debugPath = process.env.DEBUG_LOG_FILE;
+  if (!debugPath) return;
+  try {
+    const dir = path.dirname(debugPath);
+    fs.mkdirSync(dir, { recursive: true });
+    if (fs.existsSync(debugPath)) {
+      fs.writeFileSync(debugPath, "", { encoding: "utf8" });
+    }
+  } catch (err) {
+    console.error("Failed to clear debug log file:", err);
+  }
+}
+
 function writeToDebugLogFile(line: string): void {
   if (process.env.OUTPUT_TO_CURSOR_DEBUG_LOG !== "true") return;
   const debugPath = process.env.DEBUG_LOG_FILE;
@@ -446,6 +461,7 @@ async function runSseMode(url: string, auth: { user: string; password: string })
 async function main(): Promise<void> {
   const url = getWsUrl();
   const auth = getAuth();
+  truncateDebugLogFileOnStartup();
 
   if (process.env.MCP_TRANSPORT === "stdio" || args.stdio === true) {
     await runStdioMode(url, auth);
